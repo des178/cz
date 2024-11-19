@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>边城崇左 - 壮乡明珠</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <script>
+        // 检查用户登录状态
+        function checkLoginStatus() {
+            const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+            const userSpan = document.getElementById('username');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            if (username) {
+                userSpan.textContent = username;
+                loginBtn.textContent = '退出';
+                loginBtn.href = '#';
+                loginBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('username');
+                    sessionStorage.removeItem('username');
+                    window.location.reload();
+                };
+            } else {
+                userSpan.textContent = '游客';
+                loginBtn.textContent = '登录';
+                loginBtn.href = 'login.html';
+                loginBtn.onclick = null;
+            }
+        }
+
+        // 页面加载时检查登录状态
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+
+    <header>
+        <div class="header-container">
+            <div class="user-info">
+                <span id="username">游客</span>
+                <a href="login.html" id="loginBtn">登录</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#intro" class="active">城市简介</a></li>
+                    <li><a href="history.html">历史文化</a></li>
+                    <li><a href="economy.html">经济发展</a></li>
+                    <li><a href="scenery.html">自然风光</a></li>
+                    <li><a href="#specialty">特色美食</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索...">
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://p9.itc.cn/images01/20230413/399a5c4252cf41bdb033a365d9aa3c84.jpeg');">
+            <h1>崇 左</h1>
+            <p>广西壮族自治区崇左市，中国通往东盟的重要门户</p>
+        </section>
+
+        <section id="intro-detail" class="content-section">
+            <h2>城市概况</h2>
+            <div class="section-content">
+                <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.bsvsV5pldklhhfzuUHwU7gHaE7?w=272&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="崇左市全景">
+                <div class="text-content">
+                    <p>崇左市是广西壮族自治区所辖的地级市，位于广西的西南部，地理坐标在北纬21°36`~23°22`，东经106°33`~108°6`之间。它东及东南部接南宁市、防城港市，北邻百色市，西与越南接壤，是广西边境线陆路最长的地级市，总面积达1.73万平方千米。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="history" class="content-section">
+            <h2>历史沿革</h2>
+            <div class="section-content reverse">
+                <img src="https://ts1.cn.mm.bing.net/th/id/R-C.ebedaf95ab69463d6728a55b423faa29?rik=BB7mPc1lrEQaHw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn12%2f235%2fw1280h555%2f20180925%2fb125-hhuhism9850547.jpg&ehk=3mtTYBbJ%2fCHfD9wKRhEOa90z9XiXODyRFHI%2fGI%2feRdA%3d&risl=&pid=ImgRaw&r=0" alt="左江花山岩画">
+                <div class="text-content">
+                    <p>崇左市历史悠久，古属骆越之地，夏至周为荆州所辖。公元前214年，秦始皇于岭南设象郡。宋置崇善县，元置太平路，明置太平府。这里曾发生过许多历史事件，如1885年的镇南关大捷，1907年孙中山在这里亲自拉响反清第一炮，以及1930年的龙州起义等。2003年8月6日，崇左市正式挂牌成立。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="economy" class="content-section">
+            <h2>经济特色</h2>
+            <div class="section-content">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.heLcY4Nf5oL79VfSoBVb-AHaE7?w=264&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="崇左经济">
+                <div class="text-content">
+                    <p>崇左市被誉为中国的糖都和锰都，是中国最大的甘蔗种植、蔗糖生产基地，同时也是中国白头叶猴之乡、中国木棉之乡。这里的农业资源丰富，近年来大力实施"藏粮于地、藏粮于技"战略，积极推进高标准农田建设。此外，崇左市的矿藏也十分丰富，主要有锰、膨润土等30多种。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tourism" class="content-section">
+            <h2>旅游资源</h2>
+            <div class="section-content reverse">
+                <img src="https://p9.itc.cn/images01/20230413/399a5c4252cf41bdb033a365d9aa3c84.jpeg" alt="德天瀑布">
+                <div class="text-content">
+                    <p>在旅游方面，崇左市拥有众多著名的景点，如亚洲第一跨国瀑布德天瀑布、世界文化遗产左江花山岩画、世界八大斜塔之一的左江斜塔、扶绥县金鸡岩、凭祥市友谊关等。这些景点各具特色，吸引了大量国内外游客前来观光旅游。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 边城崇左 版权所有</p>
+    </footer>
+
+    <script>
+    // 监听滚动显示内容区块
+    const sections = document.querySelectorAll('.content-section');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // 导航栏滚动效果
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // 图片点击放大效果
+    const images = document.querySelectorAll('.gallery img, .food-item img');
+
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            img.classList.toggle('enlarged');
+        });
+    });
+
+    // 页面加载完成后检查登录状态
+    document.addEventListener('DOMContentLoaded', checkLoginStatus);
+
+    // 添加搜索功能
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+
+    function handleSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `search-results.html?q=${encodeURIComponent(query)}&category=all`;
+        }
+    }
+
+    searchBtn.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    });
+    </script>
+</body>
+</html> 

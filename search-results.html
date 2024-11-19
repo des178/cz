@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果 - 壮乡明珠</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .show-all-btn {
+            margin-left: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .show-all-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="user-info">
+                <span id="username">游客</span>
+                <a href="login.html" id="loginBtn">登录</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">城市简介</a></li>
+                    <li><a href="history.html">历史文化</a></li>
+                    <li><a href="economy.html">经济发展</a></li>
+                    <li><a href="scenery.html">自然风光</a></li>
+                    <li><a href="specialty.html">特色美食</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索...">
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-header">
+            <h1>搜索结果</h1>
+            <p id="searchStats">搜索"<span id="searchTerm"></span>"的结果</p>
+        </section>
+
+        <section class="search-filters">
+            <div class="filter-group">
+                <label>分类筛选：</label>
+                <select id="categoryFilter">
+                    <option value="all">全部</option>
+                    <option value="intro">城市简介</option>
+                    <option value="history">历史文化</option>
+                    <option value="economy">经济发展</option>
+                    <option value="scenery">自然风光</option>
+                    <option value="food">特色美食</option>
+                </select>
+                <button id="showAllBtn" class="show-all-btn">显示全部内容</button>
+            </div>
+        </section>
+
+        <section id="searchResults" class="search-results">
+            <!-- 搜索结果将通过 JavaScript 动态插入 -->
+        </section>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>未找到相关结果</p>
+            <p>请尝试其他关键词</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 边城崇左 版权所有</p>
+    </footer>
+
+    <script>
+        // 1. 搜索数据库定义
+        const searchDatabase = {
+            intro: [
+                {
+                    title: "崇左市概况",
+                    content: "崇左市是广西壮族自治区所辖的地级市，位于广西的西南部，东与南宁市相邻，南与越南社会主义共和国接壤，是中国面向东盟开放合作的前沿城市。",
+                    image: "https://tse4-mm.cn.bing.net/th/id/OIP-C.bsvsV5pldklhhfzuUHwU7gHaE7?w=272&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+                    url: "index.html#intro-detail"
+                },
+                {
+                    title: "地理位置",
+                    content: "崇左市地处广西西南部，东经106°34′～108°2′，北纬21°36′～23°22′之间，东与南宁市为邻，西与越南高平、谅山两省接壤，边境线长达533公里。",
+                    image: "https://p9.itc.cn/images01/20230413/399a5c4252cf41bdb033a365d9aa3c84.jpeg",
+                    url: "index.html#intro"
+                }
+            ],
+            history: [
+                {
+                    title: "左江花山岩画",
+                    content: "左江花山岩画是世界文化遗产，距今已有2500多年历史，展现了古代壮族先民的智慧结晶。岩画群分布于崇左市江河两岸的崖壁上。",
+                    image: "https://ts1.cn.mm.bing.net/th/id/R-C.ebedaf95ab69463d6728a55b423faa29?rik=BB7mPc1lrEQaHw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn12%2f235%2fw1280h555%2f20180925%2fb125-hhuhism9850547.jpg&ehk=3mtTYBbJ%2fCHfD9wKRhEOa90z9XiXODyRFHI%2fGI%2feRdA%3d&risl=&pid=ImgRaw&r=0",
+                    url: "history.html#history-content"
+                },
+                {
+                    title: "民俗文化",
+                    content: "崇左的民俗文化丰富多彩，包括霜降节、打榔舞、诗三句、侬垌节、花朝节和短衣壮文化等独特的民俗传统，展现了壮族人民的精神风貌。",
+                    image: "https://pic.vjshi.com/2021-07-05/855cc0cc2f9d26ce83ad0ffc90ae97b7/00002.jpg?x-oss-process=style/watermark",
+                    url: "history.html#history-content"
+                }
+            ],
+            economy: [
+                {
+                    title: "经济发展概况",
+                    content: "崇左市是中国面向东盟开放合作的重要门户，近年来经济快速发展，产业结构不断优化，2023年地区生产总值突破1000亿元。",
+                    image: "https://www.zeshengproject.com/static/upload/image/20220330/1648606124872581.jpg",
+                    url: "economy.html#overview"
+                },
+                {
+                    title: "制糖产业",
+                    content: "崇左是中国最大的蔗糖生产基地，年产糖量占全国总产量的15%以上。",
+                    image: "https://www.hengjiu-pt.cn/upfiles/202005010466642.jpg",
+                    url: "economy.html#industry"
+                }
+            ],
+            scenery: [
+                {
+                    title: "德天跨国瀑布",
+                    content: "德天瀑布是亚洲第一大跨国瀑布，横跨中国与越南两国，落差达到70余米，宽120米，气势磅礴，蔚为壮观。",
+                    image: "https://ts1.cn.mm.bing.net/th/id/R-C.e10bbdf95dac84afdb95a54f316c063b?rik=g%2bM1KSjlisE4Dg&riu=http%3a%2f%2fimg0.dili360.com%2fga%2fM01%2f32%2f20%2fwKgBzFR8ETWAL9N1AAa80Xw-ZmQ063.tub.jpg%40!rw16&ehk=l12LjP9c5DyabCyQmExTzMfQj3xoq1iRuraWj5%2bJLfU%3d&risl=&pid=ImgRaw&r=0",
+                    url: "scenery.html#scenery"
+                },
+                {
+                    title: "明仕田园",
+                    content: "有\"小桂林\"之称，山水田园与喀斯特地貌的完美融合。清澈的溪流，青翠的山峰，构成了一幅天然的山水画卷。",
+                    image: "https://img.pconline.com.cn/images/upload/upc/tx/photoblog/1312/01/c2/29186237_29186237_1385880784546.jpg",
+                    url: "scenery.html#scenery"
+                }
+            ],
+            food: [
+                {
+                    title: "左州狗肉",
+                    content: "左州狗肉是崇左市最具特色的传统名菜之一，以其独特的烹饪工艺和口感闻名。选用本地黑狗为原料，经过精心烹制，肉质鲜美，营养丰富。",
+                    image: "https://tse3-mm.cn.bing.net/th/id/OIP-C.ndM08DVqMoiTRb180JaVcAHaEe?w=290&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+                    url: "specialty.html#specialty"
+                },
+                {
+                    title: "崇左酸嘢",
+                    content: "崇左酸嘢是一种传统的酸性吃，以竹笋、萝卜等为原料，经过特殊工艺腌制而成，口感酸爽开胃，是当地人餐桌上不可或缺的开胃菜。",
+                    image: "https://tse3-mm.cn.bing.net/th/id/OIP-C.hBTiErGb7kSkSYobrD6GsQHaFj?rs=1&pid=ImgDetMain",
+                    url: "specialty.html#specialty"
+                },
+                {
+                    title: "壮族五色糯米饭",
+                    content: "壮族五色糯米饭是壮族传统节日必备的美食，以天然植物汁液调制出红、黄、蓝、紫、白五种颜色，既美观又有营养，寓意五谷丰登。",
+                    image: "https://ts4.cn.mm.bing.net/th?id=ODL.7cd9f0c32bd30d914d09d9e2a0b88d99&w=225&h=300&c=10&rs=1&qlt=99&bgcl=fffffe&r=0&o=6&dpr=1.5&pid=WrapstarImage",
+                    url: "specialty.html#specialty"
+                }
+            ]
+        };
+
+        // 2. 页面加载完成后执行搜索
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('q');
+            const category = urlParams.get('category') || 'all';
+            
+            // 显示搜索词
+            document.getElementById('searchTerm').textContent = searchQuery || '全部内容';
+            document.getElementById('categoryFilter').value = category;
+            
+            // 如果没有搜索词，显示所有内容
+            const results = searchQuery ? performSearch(searchQuery, category) : getAllContent(category);
+            renderResults(results);
+
+            // 添加显示全部按钮的功能
+            const showAllBtn = document.getElementById('showAllBtn');
+            if (showAllBtn) {
+                showAllBtn.addEventListener('click', () => {
+                    // 清空搜索框
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.value = '';
+                    }
+                    
+                    // 重置分类选择
+                    const categoryFilter = document.getElementById('categoryFilter');
+                    if (categoryFilter) {
+                        categoryFilter.value = 'all';
+                    }
+                    
+                    // 显示所有内容
+                    document.getElementById('searchTerm').textContent = '全部内容';
+                    const results = getAllContent('all');
+                    renderResults(results);
+                });
+            }
+        });
+
+        // 3. 搜索功能实现
+        function performSearch(query, category) {
+            const results = [];
+            const searchTerm = query.toLowerCase();
+            
+            Object.keys(searchDatabase).forEach(cat => {
+                if (category === 'all' || category === cat) {
+                    searchDatabase[cat].forEach(item => {
+                        if (item.title.toLowerCase().includes(searchTerm) || 
+                            item.content.toLowerCase().includes(searchTerm)) {
+                            results.push({...item, category: cat});
+                        }
+                    });
+                }
+            });
+            
+            return results;
+        }
+
+        // 4. 渲染搜索结果
+        function renderResults(results) {
+            const resultsContainer = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+            
+            if (results.length === 0) {
+                resultsContainer.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            resultsContainer.style.display = 'grid';
+            
+            resultsContainer.innerHTML = results.map(result => `
+                <div class="search-result-card">
+                    <img src="${result.image}" alt="${result.title}">
+                    <div class="result-content">
+                        <h3><a href="${result.url}">${result.title}</a></h3>
+                        <p>${result.content}</p>
+                        <span class="category-tag">${getCategoryName(result.category)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 5. 辅助函数
+        function getCategoryName(category) {
+            const categories = {
+                intro: '城市简介',
+                history: '历史文化',
+                economy: '经济发展',
+                scenery: '自然风光',
+                food: '特色美食'
+            };
+            return categories[category] || category;
+        }
+
+        // 6. 事件监听器
+        const categoryFilter = document.getElementById('categoryFilter');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', (e) => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('q');
+                if (searchQuery) {
+                    const results = performSearch(searchQuery, e.target.value);
+                    renderResults(results);
+                }
+            });
+        }
+
+        if (searchBtn && searchInput) {
+            function handleNewSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const category = document.getElementById('categoryFilter').value;
+                    window.location.href = `search-results.html?q=${encodeURIComponent(query)}&category=${category}`;
+                }
+            }
+
+            searchBtn.addEventListener('click', handleNewSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleNewSearch();
+                }
+            });
+        }
+
+        // 新增：获取所有内容的函数
+        function getAllContent(category) {
+            const results = [];
+            
+            Object.keys(searchDatabase).forEach(cat => {
+                if (category === 'all' || category === cat) {
+                    searchDatabase[cat].forEach(item => {
+                        results.push({...item, category: cat});
+                    });
+                }
+            });
+            
+            return results;
+        }
+    </script>
+</body>
+</html> 

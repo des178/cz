@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>崇左特色美食 - 壮乡明珠</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script>
+        // 检查用户登录状态
+        function checkLoginStatus() {
+            const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+            const userSpan = document.getElementById('username');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            if (username) {
+                userSpan.textContent = username;
+                loginBtn.textContent = '退出';
+                loginBtn.href = '#';
+                loginBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('username');
+                    sessionStorage.removeItem('username');
+                    window.location.reload();
+                };
+            } else {
+                userSpan.textContent = '游客';
+                loginBtn.textContent = '登录';
+                loginBtn.href = 'login.html';
+                loginBtn.onclick = null;
+            }
+        }
+
+        // 页面加载时检查登录状态
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+    <header>
+        <div class="header-container">
+            <div class="user-info">
+                <span id="username">游客</span>
+                <a href="login.html" id="loginBtn">登录</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">城市简介</a></li>
+                    <li><a href="history.html">历史文化</a></li>
+                    <li><a href="economy.html">经济发展</a></li>
+                    <li><a href="scenery.html">自然风光</a></li>
+                    <li><a href="#specialty" class="active">特色美食</a></li>
+                </ul>
+                <div class="search-box">
+                   
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="specialty" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://p0.itc.cn/images01/20220601/2e4ca960df24429e8e7beb609244b447.png');">
+            <h1>崇左特色美食</h1>
+            <p>舌尖上的边城风味</p>
+        </section>
+
+        <section class="content-section">
+            <h2>左州狗肉</h2>
+            <div class="section-content">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ndM08DVqMoiTRb180JaVcAHaEe?w=290&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="左州狗肉">
+                <div class="text-content">
+                    <p>左州狗肉是崇左市最具特色的传统名菜之一，以其独特的烹饪工艺和口感闻名。选用本地黑狗为原料，经过精心烹制，肉质鲜美，营养丰富。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>崇左酸粥</h2>
+            <div class="section-content reverse">
+                <img src="https://ts1.cn.mm.bing.net/th/id/R-C.3122ae97dbd4b233ce18f8fb7b99c351?rik=SfUgPcwnOVlH3w&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn21%2f625%2fw370h255%2f20180814%2ffb15-hhtfwqr1236593.jpg&ehk=ghpcjhoDwL5HgXzA5QYEIuXHJzLYqgLztF0Izgv%2fxno%3d&risl=&pid=ImgRaw&r=0" alt="崇左酸粥">
+                <div class="text-content">
+                    <p>崇左酸粥是一种传统的酸味小吃，以糯米和酸汤为主要原料，经过长时间的发酵而成，口感酸甜可口，是当地人喜爱的美食之一。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>崇左酸嘢</h2>
+            <div class="section-content">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.hBTiErGb7kSkSYobrD6GsQHaFj?rs=1&pid=ImgDetMain" alt="崇左酸嘢">
+                <div class="text-content">
+                    <p>崇左酸嘢是一种传统的酸性小吃，以竹笋、萝卜等为原料，经过特殊工艺腌制而成，口感酸爽开胃，是当地人餐桌上不可或缺的开胃菜。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>友谊关米粉</h2>
+            <div class="section-content reverse">
+                <img src="http://photocdn.sohu.com/20150425/mp12277203_1429892272105_17.jpeg" alt="友谊关米粉">
+                <div class="text-content">
+                    <p>友谊关米粉是凭祥市的特色小吃，以其独特的汤底和爽滑的米粉著称。汤底由多种香料熬制，配以现场制作的新鲜米粉，口感独特。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>壮族五色糯米饭</h2>
+            <div class="section-content">
+                <img src="https://ts4.cn.mm.bing.net/th?id=ODL.7cd9f0c32bd30d914d09d9e2a0b88d99&w=225&h=300&c=10&rs=1&qlt=99&bgcl=fffffe&r=0&o=6&dpr=1.5&pid=WrapstarImage" alt="五色糯米饭">
+                <div class="text-content">
+                    <p>壮族五色糯米饭是壮族传统节日必备的美食，以天然植物汁液调制出红、黄、蓝、紫、白五种颜色，既美观又有营养，寓意五谷丰登。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 崇左特色美食 版权所有</p>
+    </footer>
+
+    <script>
+        // 滚动动画
+        const sections = document.querySelectorAll('.content-section');
+        
+        const observerOptions = {
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 导航栏滚动效果
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // 搜索功能实现
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        // 搜索函数
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                // 如果搜索框为空，显示所有内容
+                contentSections.forEach(section => {
+                    section.style.display = 'block';
+                    section.classList.remove('search-highlight');
+                });
+                return;
+            }
+
+            contentSections.forEach(section => {
+                const title = section.querySelector('h2').textContent.toLowerCase();
+                const content = section.querySelector('.text-content').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    section.style.display = 'block';
+                    // 添加高亮效果
+                    section.classList.add('search-highlight');
+                    // 滚动到第一个匹配的结果
+                    if (!document.querySelector('.search-highlight')) {
+                        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else {
+                    section.style.display = 'none';
+                    section.classList.remove('search-highlight');
+                }
+            });
+        }
+
+        // 绑定搜索按钮点击事件
+        searchBtn.addEventListener('click', performSearch);
+
+        // 绑定输入框回车事件
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // 实时搜索（可选）
+        searchInput.addEventListener('input', () => {
+            // 使用防抖函数避免频繁搜索
+            clearTimeout(searchInput.debounceTimer);
+            searchInput.debounceTimer = setTimeout(performSearch, 300);
+        });
+
+        // 清空搜索框时恢复所有内容
+        searchInput.addEventListener('search', () => {
+            if (searchInput.value === '') {
+                contentSections.forEach(section => {
+                    section.style.display = 'block';
+                    section.classList.remove('search-highlight');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>崇左经济发展 - 壮乡明珠</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <script>
+        // 检查用户登录状态
+        function checkLoginStatus() {
+            const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+            const userSpan = document.getElementById('username');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            if (username) {
+                userSpan.textContent = username;
+                loginBtn.textContent = '退出';
+                loginBtn.href = '#';
+                loginBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('username');
+                    sessionStorage.removeItem('username');
+                    window.location.reload();
+                };
+            } else {
+                userSpan.textContent = '游客';
+                loginBtn.textContent = '登录';
+                loginBtn.href = 'login.html';
+                loginBtn.onclick = null;
+            }
+        }
+
+        // 页面加载时检查登录状态
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+    </script>
+    <header>
+        <div class="header-container">
+            <div class="user-info">
+                <span id="username">游客</span>
+                <a href="login.html" id="loginBtn">登录</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">城市简介</a></li>
+                    <li><a href="history.html">历史文化</a></li>
+                    <li><a href="economy.html" class="active">经济发展</a></li>
+                    <li><a href="scenery.html">自然风光</a></li>
+                    <li><a href="#specialty">特色美食</a></li>
+                </ul>
+                <div class="search-box">
+                    
+                    <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.zeshengproject.com/static/upload/image/20220330/1648606124872581.jpg');">
+            <h1>崇左经济发展</h1>
+            <p>中国-东盟自贸区的重要节点城市</p>
+        </section>
+
+        <section class="content-section">
+            <h2>经济概况</h2>
+            <div class="section-content">
+                <img src="https://ts1.cn.mm.bing.net/th/id/R-C.5acf78b4ee2fe41b13e69c0b86cb068c?rik=JptHipvNMoLCpA&riu=http%3a%2f%2fwww.zuojiang.com%2fUploadFile%2fcommon%2fwechat%2f2023%2f08-01%2f1b7094f1-654f-4aae-a436-78bf6dc1f26f.png&ehk=szBPJSbxqqEne70X2nfIouYlbldDVOAM%2fc%2bXqVsqH9w%3d&risl=&pid=ImgRaw&r=0" alt="崇左工业园区">
+                <div class="text-content">
+                    <p>崇左市是中国通往东盟的重要门户，是"一带一路"和西部陆海新通道的重要节点城市。2023年，全市地区生产总值突破1000亿元，经济持续稳定增长。作为中国重要的糖都和锰都，崇左在制糖工业和矿产开发方面具有显著优势。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>主导产业</h2>
+            <div class="culture-cards">
+                <div class="culture-card">
+                    <img src="https://www.hengjiu-pt.cn/upfiles/202005010466642.jpg" alt="制糖产业">
+                    <div class="card-content">
+                        <h3>制糖产业</h3>
+                        <p>崇左是中国最大的蔗糖生产基地，年产糖量占全国总产量的15%以上。</p>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.43d0f4d25b266e390c490e2aec7d4833?rik=bzv69e6gxdOwxw&riu=http%3a%2f%2fi04.c.aliimg.com%2fimg%2fibank%2f2010%2f522%2f328%2f149823225_632854441.jpg&ehk=7qiAnHNgBoknwKTo05pVUnyKPQM80Ra4ElJtg%2bj6JBM%3d&risl=&pid=ImgRaw&r=0" alt="矿产开发">
+                    <div class="card-content">
+                        <h3>矿产开发</h3>
+                        <p>拥有丰富的锰矿资源，是中国重要的锰矿生产基地。</p>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <img src="https://n.sinaimg.cn/sinakd10117/384/w2048h1536/20210820/0070-9457bffaf83ca640eace950e02025752.jpg" alt="边境贸易">
+                    <div class="card-content">
+                        <h3>边境贸易</h3>
+                        <p>凭祥综合保税区是中国对东盟开放的重要窗口，年贸易额超百亿元。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>重点项目</h2>
+            <div class="section-content">
+                <div class="text-content">
+                    <h3>中国-东盟自由贸易区核心区</h3>
+                    <p>作为中国-东盟自由贸易区的核心区域之一，崇左正在打造跨境产业合作园区、现代物流园区等重点项目，推动中国-东盟经贸合作深入发展。</p>
+                    <h3>现代农业示范区</h3>
+                    <p>建设热带特色农业示范区，发展芒果、火龙果等特色水果种植，打造现代农业产业链。</p>
+                    <h3>新型工业园区</h3>
+                    <p>重点发展新材料、生物医药、电子信息等新兴产业，推动产业转型升级。</p>
+                </div>
+                <img src="https://n.sinaimg.cn/sinakd10120/672/w2048h1024/20211210/7153-3793ca07601cc85f117f9ba3f8c532db.jpg" alt="重点项目">
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>发展愿景</h2>
+            <div class="section-content reverse">
+                <img src="https://n.sinaimg.cn/sinakd20220703s/60/w1080h580/20220703/fa24-43256a5f278d13a1c13b23f6145dcb27.jpg" alt="发展愿景">
+                <div class="text-content">
+                    <p>到2025年，崇左市将全面建成现代化边境口岸城市，打造成为中国-东盟开放合作的重要平台、西部陆海新通道的重要节点、面向东盟的区域性中心城市。重点发展绿色工业、现代服务业和特色农业，构建现代化产业体系。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 崇左经济发展 版权所有</p>
+    </footer>
+
+    <script>
+        // 监听滚动显示内容区块
+        const sections = document.querySelectorAll('.content-section');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 导航栏滚动效果
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html> 
